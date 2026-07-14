@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+    <file source-language="en" datatype="plaintext" original="messages" date="2026-07-13" product-name="maidem_mosparo_dashboard">
+        <body>
+            <trans-unit id="widgets.validSubmissions.title" xml:space="preserve">
+                <source>Gültige Einsendungen</source>
+            </trans-unit>
+            <trans-unit id="widgets.validSubmissions.subtitle" xml:space="preserve">
+                <source>Letzte 14 Tage (mosparo)</source>
+            </trans-unit>
+            <trans-unit id="widgets.validSubmissions.description" xml:space="preserve">
+                <source>Zeigt die Anzahl der von mosparo als gültig eingestuften Formular-Einsendungen.</source>
+            </trans-unit>
+            <trans-unit id="widgets.spamSubmissions.title" xml:space="preserve">
+                <source>Spam-Einsendungen</source>
+            </trans-unit>
+            <trans-unit id="widgets.spamSubmissions.subtitle" xml:space="preserve">
+                <source>Letzte 14 Tage (mosparo)</source>
+            </trans-unit>
+            <trans-unit id="widgets.spamSubmissions.description" xml:space="preserve">
+                <source>Zeigt die Anzahl der von mosparo als Spam eingestuften Formular-Einsendungen.</source>
+            </trans-unit>
+            <trans-unit id="widgets.submissionsChart.title" xml:space="preserve">
+                <source>Mosparo Einsendungen</source>
+            </trans-unit>
+            <trans-unit id="widgets.submissionsChart.description" xml:space="preserve">
+                <source>Verlauf der gültigen und Spam-Einsendungen der letzten 14 Tage.</source>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>

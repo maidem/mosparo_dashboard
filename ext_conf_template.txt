@@ -1,0 +1,8 @@
+# cat=basic; type=string; label= Mosparo Host (z.B. https://protect.example.com)
+host =
+
+# cat=basic; type=string; label= Mosparo Public Key
+publicKey =
+
+# cat=basic; type=string; label= Mosparo Private Key
+privateKey =

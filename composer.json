@@ -1,0 +1,28 @@
+{
+    "name": "maidem/mosparo-dashboard",
+    "type": "typo3-cms-extension",
+    "description": "TYPO3 dashboard widgets showing mosparo spam-protection statistics (valid/spam submissions) via the mosparo API.",
+    "homepage": "https://maidem.de",
+    "license": "GPL-2.0-or-later",
+    "keywords": [
+        "TYPO3 CMS",
+        "mosparo",
+        "dashboard"
+    ],
+    "require": {
+        "php": ">=8.4.0",
+        "typo3/cms-core": "^14.1",
+        "typo3/cms-dashboard": "^14.1",
+        "mosparo/php-api-client": "^1.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Maidem\\MosparoDashboard\\": "Classes/"
+        }
+    },
+    "extra": {
+        "typo3/cms": {
+            "extension-key": "maidem_mosparo_dashboard"
+        }
+    }
+}

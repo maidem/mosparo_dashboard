@@ -1,0 +1,64 @@
+services:
+  _defaults:
+    autowire: true
+    autoconfigure: true
+    public: false
+
+  Maidem\MosparoDashboard\:
+    resource: '../Classes/*'
+
+  cache.maidem_mosparo_dashboard:
+    class: 'TYPO3\CMS\Core\Cache\Frontend\FrontendInterface'
+    factory: ['@TYPO3\CMS\Core\Cache\CacheManager', 'getCache']
+    arguments:
+      $identifier: 'maidem_mosparo_dashboard'
+
+  Maidem\MosparoDashboard\Service\MosparoStatisticService:
+    arguments:
+      $cache: '@cache.maidem_mosparo_dashboard'
+
+  dashboard.widget.mosparoValidSubmissions:
+    class: 'TYPO3\CMS\Dashboard\Widgets\NumberWithIconWidget'
+    arguments:
+      $dataProvider: '@Maidem\MosparoDashboard\Dashboard\ValidSubmissionsDataProvider'
+      $options:
+        title: 'LLL:EXT:maidem_mosparo_dashboard/Resources/Private/Language/locallang.xlf:widgets.validSubmissions.title'
+        subtitle: 'LLL:EXT:maidem_mosparo_dashboard/Resources/Private/Language/locallang.xlf:widgets.validSubmissions.subtitle'
+        icon: 'actions-check'
+    tags:
+      - name: dashboard.widget
+        identifier: 'mosparoValidSubmissions'
+        groupNames: 'systemInfo'
+        title: 'LLL:EXT:maidem_mosparo_dashboard/Resources/Private/Language/locallang.xlf:widgets.validSubmissions.title'
+        description: 'LLL:EXT:maidem_mosparo_dashboard/Resources/Private/Language/locallang.xlf:widgets.validSubmissions.description'
+        iconIdentifier: 'content-widget-number'
+
+  dashboard.widget.mosparoSpamSubmissions:
+    class: 'TYPO3\CMS\Dashboard\Widgets\NumberWithIconWidget'
+    arguments:
+      $dataProvider: '@Maidem\MosparoDashboard\Dashboard\SpamSubmissionsDataProvider'
+      $options:
+        title: 'LLL:EXT:maidem_mosparo_dashboard/Resources/Private/Language/locallang.xlf:widgets.spamSubmissions.title'
+        subtitle: 'LLL:EXT:maidem_mosparo_dashboard/Resources/Private/Language/locallang.xlf:widgets.spamSubmissions.subtitle'
+        icon: 'actions-ban'
+    tags:
+      - name: dashboard.widget
+        identifier: 'mosparoSpamSubmissions'
+        groupNames: 'systemInfo'
+        title: 'LLL:EXT:maidem_mosparo_dashboard/Resources/Private/Language/locallang.xlf:widgets.spamSubmissions.title'
+        description: 'LLL:EXT:maidem_mosparo_dashboard/Resources/Private/Language/locallang.xlf:widgets.spamSubmissions.description'
+        iconIdentifier: 'content-widget-number'
+
+  dashboard.widget.mosparoSubmissionsChart:
+    class: 'TYPO3\CMS\Dashboard\Widgets\BarChartWidget'
+    arguments:
+      $dataProvider: '@Maidem\MosparoDashboard\Dashboard\SubmissionsChartDataProvider'
+    tags:
+      - name: dashboard.widget
+        identifier: 'mosparoSubmissionsChart'
+        groupNames: 'systemInfo'
+        title: 'LLL:EXT:maidem_mosparo_dashboard/Resources/Private/Language/locallang.xlf:widgets.submissionsChart.title'
+        description: 'LLL:EXT:maidem_mosparo_dashboard/Resources/Private/Language/locallang.xlf:widgets.submissionsChart.description'
+        iconIdentifier: 'content-widget-chart'
+        height: 'medium'
+        width: 'large'
