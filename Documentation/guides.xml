@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<guides xmlns="https://www.phpdoc.org/guides">
+    <extension class="TYPO3\CMS\Documentation\Extension\Typo3TerFieldExtension"/>
+</guides>
