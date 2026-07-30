@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <xliff version="1.0">
-    <file source-language="en" datatype="plaintext" original="messages" date="2026-07-13" product-name="maidem_mosparo_dashboard">
+    <file source-language="en" datatype="plaintext" original="messages" date="2026-07-13" product-name="mosparo_dashboard">
         <body>
             <trans-unit id="widgets.validSubmissions.title" xml:space="preserve">
                 <source>Gültige Einsendungen</source>

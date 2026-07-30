@@ -1,6 +1,6 @@
 <?php
 
-$EM_CONF['maidem_mosparo_dashboard'] = [
+$EM_CONF['mosparo_dashboard'] = [
     'title' => 'Maidem Mosparo Dashboard',
     'description' => 'TYPO3 dashboard widgets showing mosparo spam-protection statistics (valid/spam submissions).',
     'category' => 'be',

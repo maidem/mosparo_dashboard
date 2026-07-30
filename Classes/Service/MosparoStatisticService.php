@@ -18,7 +18,7 @@ class MosparoStatisticService
 
     public function getStatistic(): ?StatisticResult
     {
-        $cacheIdentifier = 'maidem_mosparo_dashboard_statistic';
+        $cacheIdentifier = 'mosparo_dashboard_statistic';
         $cached = $this->cache->get($cacheIdentifier);
         if ($cached instanceof StatisticResult) {
             return $cached;
@@ -43,7 +43,7 @@ class MosparoStatisticService
 
     private function createClient(): ?Client
     {
-        $config = $this->extensionConfiguration->get('maidem_mosparo_dashboard');
+        $config = $this->extensionConfiguration->get('mosparo_dashboard');
 
         if (empty($config['host']) || empty($config['publicKey']) || empty($config['privateKey'])) {
             return null;

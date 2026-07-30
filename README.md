@@ -24,7 +24,7 @@ Anschließend im Backend unter **Dashboard → Widget hinzufügen** die gewünsc
 
 ## Konfiguration
 
-Host, Public Key und Private Key werden über die Erweiterungskonfiguration gesetzt (**System → Einstellungen → Erweiterungskonfiguration → maidem_mosparo_dashboard**) oder per Umgebungsvariable überschrieben (z. B. in Coolify) — praktisch, wenn dieselbe Extension in mehreren Projekten mit unterschiedlichen mosparo-Instanzen läuft.
+Host, Public Key und Private Key werden über die Erweiterungskonfiguration gesetzt (**System → Einstellungen → Erweiterungskonfiguration → mosparo_dashboard**) oder per Umgebungsvariable überschrieben (z. B. in Coolify) — praktisch, wenn dieselbe Extension in mehreren Projekten mit unterschiedlichen mosparo-Instanzen läuft.
 
 ### Umgebungsvariablen
 
@@ -36,6 +36,6 @@ Diese Variablen werden unabhängig vom `TYPO3_CONTEXT` ausgelesen (siehe `config
 
 ## Technische Details
 
-- **MosparoStatisticService** — baut den `Mosparo\ApiClient\Client` auf und cached das Ergebnis von `getStatisticByDate()` 5 Minuten lang (eigener Cache `maidem_mosparo_dashboard`), um die API nicht bei jedem Dashboard-Reload anzufragen
+- **MosparoStatisticService** — baut den `Mosparo\ApiClient\Client` auf und cached das Ergebnis von `getStatisticByDate()` 5 Minuten lang (eigener Cache `mosparo_dashboard`), um die API nicht bei jedem Dashboard-Reload anzufragen
 - **ValidSubmissionsDataProvider** / **SpamSubmissionsDataProvider** — liefern die Zahlen für die `NumberWithIconWidget`-Kacheln
 - **SubmissionsChartDataProvider** — bereitet die Tageswerte im Chart.js-Format für das `BarChartWidget` auf

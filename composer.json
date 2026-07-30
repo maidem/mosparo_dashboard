@@ -22,7 +22,7 @@
     },
     "extra": {
         "typo3/cms": {
-            "extension-key": "maidem_mosparo_dashboard"
+            "extension-key": "mosparo_dashboard"
         }
     }
 }
