@@ -52,7 +52,7 @@ Requirements
 ============
 
 *   TYPO3 14+
-*   PHP 8.4+
+*   PHP 8.2+
 *   A reachable mosparo instance with a public/private key pair
 
 .. _installation:
@@ -74,7 +74,7 @@ Configuration
 
 Host, public key and private key are set via the extension configuration
 (**System → Settings → Extension Configuration → mosparo_dashboard**) or
-overridden via environment variable (e.g. in Coolify) — useful when the same
+overridden via environment variable — useful when the same
 extension runs in multiple projects against different mosparo instances.
 
 Environment variables
@@ -85,8 +85,9 @@ Environment variables
 *   ``MOSPARO_PUBLIC_KEY`` — public key of the mosparo project
 *   ``MOSPARO_PRIVATE_KEY`` — private key of the mosparo project
 
-These variables are read independently of ``TYPO3_CONTEXT`` and override the
-extension configuration — this works both in production and locally.
+The extension reads these variables itself and prefers them over the
+extension configuration. The extension configuration is visible to backend
+administrators, so set the private key via environment variable.
 
 .. _technical-details:
 
@@ -96,7 +97,7 @@ Technical details
 *   **MosparoStatisticService** — builds the ``Mosparo\ApiClient\Client``
     and caches the result of ``getStatisticByDate()`` for 5 minutes (own
     cache ``mosparo_dashboard``) to avoid hitting the API on every dashboard
-    reload
+    reload; a failed request is logged and not retried for 60 seconds
 *   **ValidSubmissionsDataProvider** / **SpamSubmissionsDataProvider** —
     provide the numbers for the ``NumberWithIconWidget`` tiles
 *   **SubmissionsChartDataProvider** — prepares the daily values in
