@@ -1,30 +1,36 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
-<xliff version="1.0">
-    <file source-language="en" datatype="plaintext" original="messages" date="2026-07-13" product-name="mosparo_dashboard">
+<?xml version="1.0" encoding="utf-8"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file source-language="en" datatype="plaintext" original="locallang.xlf" product-name="mosparo_dashboard">
         <body>
-            <trans-unit id="widgets.validSubmissions.title" xml:space="preserve">
-                <source>Gültige Einsendungen</source>
+            <trans-unit id="widgets.validSubmissions.title" resname="widgets.validSubmissions.title">
+                <source>Valid submissions</source>
             </trans-unit>
-            <trans-unit id="widgets.validSubmissions.subtitle" xml:space="preserve">
-                <source>Letzte 14 Tage (mosparo)</source>
+            <trans-unit id="widgets.validSubmissions.subtitle" resname="widgets.validSubmissions.subtitle">
+                <source>Last 14 days (mosparo)</source>
             </trans-unit>
-            <trans-unit id="widgets.validSubmissions.description" xml:space="preserve">
-                <source>Zeigt die Anzahl der von mosparo als gültig eingestuften Formular-Einsendungen.</source>
+            <trans-unit id="widgets.validSubmissions.description" resname="widgets.validSubmissions.description">
+                <source>Shows the number of form submissions mosparo classified as valid.</source>
             </trans-unit>
-            <trans-unit id="widgets.spamSubmissions.title" xml:space="preserve">
-                <source>Spam-Einsendungen</source>
+            <trans-unit id="widgets.spamSubmissions.title" resname="widgets.spamSubmissions.title">
+                <source>Spam submissions</source>
             </trans-unit>
-            <trans-unit id="widgets.spamSubmissions.subtitle" xml:space="preserve">
-                <source>Letzte 14 Tage (mosparo)</source>
+            <trans-unit id="widgets.spamSubmissions.subtitle" resname="widgets.spamSubmissions.subtitle">
+                <source>Last 14 days (mosparo)</source>
             </trans-unit>
-            <trans-unit id="widgets.spamSubmissions.description" xml:space="preserve">
-                <source>Zeigt die Anzahl der von mosparo als Spam eingestuften Formular-Einsendungen.</source>
+            <trans-unit id="widgets.spamSubmissions.description" resname="widgets.spamSubmissions.description">
+                <source>Shows the number of form submissions mosparo classified as spam.</source>
             </trans-unit>
-            <trans-unit id="widgets.submissionsChart.title" xml:space="preserve">
-                <source>Mosparo Einsendungen</source>
+            <trans-unit id="widgets.submissionsChart.title" resname="widgets.submissionsChart.title">
+                <source>Mosparo submissions</source>
             </trans-unit>
-            <trans-unit id="widgets.submissionsChart.description" xml:space="preserve">
-                <source>Verlauf der gültigen und Spam-Einsendungen der letzten 14 Tage.</source>
+            <trans-unit id="widgets.submissionsChart.description" resname="widgets.submissionsChart.description">
+                <source>Trend of valid and spam submissions over the last 14 days.</source>
+            </trans-unit>
+            <trans-unit id="chart.valid" resname="chart.valid">
+                <source>Valid</source>
+            </trans-unit>
+            <trans-unit id="chart.spam" resname="chart.spam">
+                <source>Spam</source>
             </trans-unit>
         </body>
     </file>

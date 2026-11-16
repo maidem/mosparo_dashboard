@@ -6,22 +6,32 @@ namespace Maidem\MosparoDashboard\Service;
 
 use Mosparo\ApiClient\Client;
 use Mosparo\ApiClient\StatisticResult;
+use Psr\Log\LoggerInterface;
 use TYPO3\CMS\Core\Cache\Frontend\FrontendInterface;
 use TYPO3\CMS\Core\Configuration\ExtensionConfiguration;
 
-class MosparoStatisticService
+final class MosparoStatisticService
 {
+    private const CACHE_IDENTIFIER = 'mosparo_dashboard_statistic';
+    private const FAILURE_MARKER = 'failed';
+    private const LIFETIME_SUCCESS = 300;
+    private const LIFETIME_FAILURE = 60;
+
     public function __construct(
         private readonly ExtensionConfiguration $extensionConfiguration,
         private readonly FrontendInterface $cache,
+        private readonly LoggerInterface $logger,
     ) {}
 
     public function getStatistic(): ?StatisticResult
     {
-        $cacheIdentifier = 'mosparo_dashboard_statistic';
-        $cached = $this->cache->get($cacheIdentifier);
+        $cached = $this->cache->get(self::CACHE_IDENTIFIER);
         if ($cached instanceof StatisticResult) {
             return $cached;
+        }
+        if ($cached === self::FAILURE_MARKER) {
+            // a recent request failed, do not retry on every dashboard reload
+            return null;
         }
 
         $client = $this->createClient();
@@ -31,12 +41,13 @@ class MosparoStatisticService
 
         try {
             $statistic = $client->getStatisticByDate(60 * 60 * 24 * 14);
-        } catch (\Throwable) {
+        } catch (\Throwable $exception) {
+            $this->logger->error('mosparo statistic request failed: ' . $exception->getMessage(), ['exception' => $exception]);
+            $this->cache->set(self::CACHE_IDENTIFIER, self::FAILURE_MARKER, [], self::LIFETIME_FAILURE);
             return null;
         }
 
-        // ponytail: 5min cache, avoids hammering the mosparo API on every dashboard reload
-        $this->cache->set($cacheIdentifier, $statistic, [], 300);
+        $this->cache->set(self::CACHE_IDENTIFIER, $statistic, [], self::LIFETIME_SUCCESS);
 
         return $statistic;
     }
@@ -44,11 +55,29 @@ class MosparoStatisticService
     private function createClient(): ?Client
     {
         $config = $this->extensionConfiguration->get('mosparo_dashboard');
+        $host = $this->environment(['MOSPARO_HOST', 'MOSPARO_PUBLIC_SERVER']) ?? (string)($config['host'] ?? '');
+        $publicKey = $this->environment(['MOSPARO_PUBLIC_KEY']) ?? (string)($config['publicKey'] ?? '');
+        $privateKey = $this->environment(['MOSPARO_PRIVATE_KEY']) ?? (string)($config['privateKey'] ?? '');
 
-        if (empty($config['host']) || empty($config['publicKey']) || empty($config['privateKey'])) {
+        if ($host === '' || $publicKey === '' || $privateKey === '') {
             return null;
         }
 
-        return new Client($config['host'], $config['publicKey'], $config['privateKey']);
+        return new Client($host, $publicKey, $privateKey);
+    }
+
+    /**
+     * @param list<string> $names
+     */
+    private function environment(array $names): ?string
+    {
+        foreach ($names as $name) {
+            $value = getenv($name);
+            if (is_string($value) && $value !== '') {
+                return $value;
+            }
+        }
+
+        return null;
     }
 }

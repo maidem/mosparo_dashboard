@@ -7,7 +7,7 @@ namespace Maidem\MosparoDashboard\Dashboard;
 use Maidem\MosparoDashboard\Service\MosparoStatisticService;
 use TYPO3\CMS\Dashboard\Widgets\NumberWithIconDataProviderInterface;
 
-class ValidSubmissionsDataProvider implements NumberWithIconDataProviderInterface
+final class ValidSubmissionsDataProvider implements NumberWithIconDataProviderInterface
 {
     public function __construct(private readonly MosparoStatisticService $statisticService) {}
 

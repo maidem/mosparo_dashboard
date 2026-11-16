@@ -13,7 +13,7 @@ Die Extension fragt über die mosparo-API die Statistik-Daten des konfigurierten
 ## Voraussetzungen
 
 - TYPO3 14+
-- PHP 8.4+
+- PHP 8.2+
 - Eine erreichbare mosparo-Instanz mit Public/Private Key
 
 ## Installation
@@ -24,7 +24,7 @@ Anschließend im Backend unter **Dashboard → Widget hinzufügen** die gewünsc
 
 ## Konfiguration
 
-Host, Public Key und Private Key werden über die Erweiterungskonfiguration gesetzt (**System → Einstellungen → Erweiterungskonfiguration → mosparo_dashboard**) oder per Umgebungsvariable überschrieben (z. B. in Coolify) — praktisch, wenn dieselbe Extension in mehreren Projekten mit unterschiedlichen mosparo-Instanzen läuft.
+Host, Public Key und Private Key werden über die Erweiterungskonfiguration gesetzt (**System → Einstellungen → Erweiterungskonfiguration → mosparo_dashboard**) oder per Umgebungsvariable überschrieben — praktisch, wenn dieselbe Extension in mehreren Projekten mit unterschiedlichen mosparo-Instanzen läuft.
 
 ### Umgebungsvariablen
 
@@ -32,7 +32,7 @@ Host, Public Key und Private Key werden über die Erweiterungskonfiguration gese
 - `MOSPARO_PUBLIC_KEY` — Public Key des mosparo-Projekts
 - `MOSPARO_PRIVATE_KEY` — Private Key des mosparo-Projekts
 
-Diese Variablen werden unabhängig vom `TYPO3_CONTEXT` ausgelesen (siehe `config/system/additional.php` im Hauptprojekt) und überschreiben dort die Erweiterungskonfiguration — funktioniert also sowohl in Production (Coolify) als auch lokal in DDEV (`.ddev/config.local.yaml`).
+Die Extension liest diese Variablen selbst und bevorzugt sie vor der Erweiterungskonfiguration. Der Private Key sollte deshalb über die Umgebung gesetzt werden und nicht in der Erweiterungskonfiguration stehen, die im Backend sichtbar ist.
 
 ## Technische Details
 
